@@ -2,9 +2,10 @@
 
 ## Introducción
 
-Es una aplicación para que el cliente de un bar haga pedidos a la barra sin necesidad de hacer el pedido al camarero y poder ver en todo momento el estado de ese pedido.
+Es una aplicación para que el cliente de un bar haga pedidos a la barra sin necesidad del camarero, y poder ver en todo momento el estado de ese pedido y de la cuenta.
 
-Realizado con el framework de ionic 3.20
+Este proyecto cuenta una API REST que corre por NodeJS y se alimenta de una base de datos mongodb.
+La app esta creada con el framework 3.20 de ionic.
 
 A fecha de 19/05/2018 está en proceso de creación.
 
