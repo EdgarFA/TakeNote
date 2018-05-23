@@ -1,0 +1,22 @@
+{
+  "name": "ApiNoteTake",
+  "version": "1.0.0",
+  "description": "Api para app noteTake",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
+  },
+  "keywords": [],
+  "author": "Edgar Fernandez Avellaneda",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "jwt-simple": "^0.5.1",
+    "moment": "^2.22.1",
+    "mongoose": "^5.1.2",
+    "nodemon": "^1.17.4"
+  }
+}
