@@ -27,7 +27,6 @@ function signUp (req, res) {
   function signIn (req, res) {
 
     let password = encrypt.encrypt(req.body.password);
-
     Usuario.findOne({ email: req.body.email,password: password }, (err, usuario) => {
       if (err) return res.status(500).send({ message: err })
       if (!usuario) return res.status(404).send({ message: 'No existe el usuario' })  

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController   } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginServiceProvider } from '../../providers/login-service/login-service';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the LoginPage page.
@@ -20,12 +22,17 @@ export class LoginPage {
   usuario: any;
   errorLogin: boolean =false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public formBuilder: FormBuilder,
+    public loginService: LoginServiceProvider, public toastCtrl: ToastController) {
     this.loginForm = this.createLoginForm();
   }
 
   ionViewDidLoad() {
-    
+    if(window.localStorage['email']!=null)
+    {
+      console.log(window.localStorage['email']);
+      this.navCtrl.push(HomePage);
+    }
   }
 
   private createLoginForm(){
@@ -35,9 +42,33 @@ export class LoginPage {
     });
   }  
 
-  loginUser()
-  {    
-    
-  }   
+  mostrarToast() {
+    let toast = this.toastCtrl.create({
+      message: 'El usuario no existe',
+      cssClass:'toastCustomCss',
+      duration:3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+  
 
+  
+  loginUser()
+  { 
+      this.loginService.postLogin(this.loginForm.value.email,this.loginForm.value.password).subscribe(
+        (data)=>{
+        this.usuario=data;
+
+        window.localStorage['email']=this.loginForm.value.email;
+        window.localStorage['password']=this.loginForm.value.password;
+
+        console.log(this.usuario.token)
+        this.navCtrl.push(HomePage);
+      },
+      (error)=>{
+        console.error(error);
+      }
+    )
+  }   
 }
