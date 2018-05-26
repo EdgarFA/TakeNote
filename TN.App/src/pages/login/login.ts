@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController   } from 'ionic-an
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginServiceProvider } from '../../providers/login-service/login-service';
 import { HomePage } from '../home/home';
+import { SignupPage } from '../signup/signup';
 
 /**
  * Generated class for the LoginPage page.
@@ -28,10 +29,9 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    if(window.localStorage['email']!=null)
+    if(window.localStorage['token']!=null)
     {
-      console.log(window.localStorage['email']);
-      this.navCtrl.push(HomePage);
+      //this.navCtrl.push(HomePage);
     }
   }
 
@@ -51,9 +51,7 @@ export class LoginPage {
     });
     toast.present();
   }
-  
 
-  
   loginUser()
   { 
       this.loginService.postLogin(this.loginForm.value.email,this.loginForm.value.password).subscribe(
@@ -62,13 +60,18 @@ export class LoginPage {
 
         window.localStorage['email']=this.loginForm.value.email;
         window.localStorage['password']=this.loginForm.value.password;
+        window.localStorage['token']= this.usuario.token;
 
-        console.log(this.usuario.token)
-        this.navCtrl.push(HomePage);
+        this.navCtrl.setRoot(HomePage);
       },
       (error)=>{
+        window.localStorage.clear();
+        this.mostrarToast();
         console.error(error);
-      }
-    )
+      });
   }   
+
+  registerUser(){
+    this.navCtrl.setRoot(SignupPage);
+  }
 }

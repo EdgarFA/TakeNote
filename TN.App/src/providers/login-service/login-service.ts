@@ -13,13 +13,29 @@ export class LoginServiceProvider {
    
   }
 
-  postLogin(email: String, password: String): any {
+  postRegister(email: String, password: String, nombre: String, apellidos:String, nacimiento: Date){
+    var data={
+      "email":email,
+      "password":password,
+      "nombre": nombre,
+      "apellidos": apellidos,
+      "nacimiento": nacimiento,
+      "alta": Date.now,
+      "acceso": Date.now
+    };
+
+    var header = { "headers": {"Content-Type": "application/json"} };
+    return this.http.post('http://192.168.1.12:7171/api/signup',data,header)
+
+  }
+
+  postLogin(email: String, password: String) {
 
    var data={
      "email":email,
      "password":password
    };
     var header = { "headers": {"Content-Type": "application/json"} };
-      return this.http.post('http://localhost:7171/api/signin',data,header)
+      return this.http.post('http://192.168.1.12:7171/api/signin',data,header)
   }
 }

@@ -1,0 +1,40 @@
+page-signup {
+
+    ion-content{
+        background: url('../../assets/imgs/fondo.png') no-repeat;
+        -webkit-background-size: 130% auto;
+        
+    }
+    .paddingRow{
+        padding-top: 35px;
+    }
+    .eye-icon-btn{
+        background-color: transparent !important;
+        color: black;
+        font-size: 2.2rem !important;
+        }
+
+    .item-datetime ion-label {
+        -webkit-flex: initial;
+        -ms-flex: initial;
+        flex: initial;
+        max-width: 200px;
+        pointer-events: none;
+    }
+        
+    .datetime-text:empty:not(:focus):before{
+        color:silver;
+    }
+    
+    .passwordIncorrect{
+        color:red;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 15px;
+    }
+    .md-person{
+        color: red !important;
+    }
+    .person{
+        color: red !important;
+    }
+}
